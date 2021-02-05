@@ -14,10 +14,28 @@ public class Game : MonoBehaviour
     private string currentPlayer = "White";
     public bool gameOver = false;
 
+    //Timer
+    public float Player1Timer, Player2Timer;
+    [SerializeField]
+    Text P1Timer, P2Timer;
 
-    // Start is called before the first frame update
+    //UI
+    private GameObject WinnerHolder;
+    private GameObject Player1THolder;
+    private GameObject Player2THolder;
+
     void Start()
     {
+        WinnerHolder = GameObject.Find("WinnerTextHolder");
+        WinnerHolder.SetActive(false);
+        Player1THolder = GameObject.Find("Player1Timer");
+        Player2THolder = GameObject.Find("Player2Timer");
+        Player1THolder.SetActive(false);
+        Player2THolder.SetActive(false);
+
+        Player1Timer = 300f;
+        Player2Timer = 300f;
+
         playerWhite = new GameObject[]
         {
             Create ("WhiteRook", 0,0), Create ("WhiteKnight", 1,0), Create ("WhiteBishop", 2,0), Create ("WhiteQueen", 3,0),
@@ -40,6 +58,54 @@ public class Game : MonoBehaviour
             setPosition(playerWhite[i]);
         }
     }
+
+    public void Update()
+    {
+        if (gameOver == true)
+        {
+            StartCoroutine(LoadMainMenu());
+        }
+
+        if (currentPlayer == "White" && gameOver == false)
+        {
+            Player1Timer -= 1 * Time.deltaTime;
+            Player1THolder.SetActive(true);
+            Player2THolder.SetActive(false);
+        }
+
+        else if (currentPlayer == "Black" && gameOver == false)
+        {
+            Player2Timer -= 1 * Time.deltaTime;
+            Player1THolder.SetActive(false);
+            Player2THolder.SetActive(true);
+        }
+
+        if (Player1Timer == 0 || Player1Timer <= 0)
+        {
+            Player1THolder.SetActive(true);
+            Player2THolder.SetActive(true);
+            Player1Timer = 0;
+            gameOver = true;
+            WinnerHolder.SetActive(true);
+            GameObject.FindGameObjectWithTag("WinnerText").GetComponent<Text>().enabled = true;
+            GameObject.FindGameObjectWithTag("WinnerText").GetComponent<Text>().text = "Black is the winner";
+        }
+
+        else if (Player2Timer == 0 || Player2Timer <= 0)
+        {
+            Player1THolder.SetActive(true);
+            Player2THolder.SetActive(true);
+            Player2Timer = 0;
+            gameOver = true;
+            WinnerHolder.SetActive(true);
+            GameObject.FindGameObjectWithTag("WinnerText").GetComponent<Text>().enabled = true;
+            GameObject.FindGameObjectWithTag("WinnerText").GetComponent<Text>().text = "White is the winner";
+        }
+        P1Timer.text = "Player 1 timer: " + Player1Timer.ToString("0");
+        P2Timer.text = "Player 2 timer: " + Player2Timer.ToString("0");
+
+    }
+
     public GameObject Create(string name, int x, int y)
     {
         GameObject obj = Instantiate(chessPiece, new Vector3(0, 0, -1), Quaternion.identity);
@@ -101,18 +167,12 @@ public class Game : MonoBehaviour
         }
     }
 
-    public void Update()
-    {
-        if (gameOver == true)
-        {
-            StartCoroutine(LoadMainMenu());
-        }
-    }
-
     public void Winner(string playerWinner)
     {
+        WinnerHolder.SetActive(true);
         gameOver = true;
-        GameObject.FindGameObjectWithTag("WinnerText").GetComponent<Text>().enabled = true;
+        Player1THolder.SetActive(true);
+        Player2THolder.SetActive(true);
         GameObject.FindGameObjectWithTag("WinnerText").GetComponent<Text>().text = playerWinner + " is the Winner";
     }
 
