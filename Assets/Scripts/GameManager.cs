@@ -57,14 +57,23 @@ public class GameManager : MonoBehaviour
             {
 
             }
-
         }
     }
 
-    public void LoadGameScene()
+    public void Load2DGameScene()
     {
         StartCoroutine(initDB(path));
         SceneManager.LoadScene("Game");
+        StartCoroutine(db.downloadAndSaveImage());
+        StartCoroutine(getAll2DPieces());
+    }
+
+    public void Load3DGameScene()
+    {
+        StartCoroutine(initDB(path));
+        SceneManager.LoadScene("Game");
+        StartCoroutine(db.downloadAndSaveImage());
+        StartCoroutine(getAll3DPieces());
     }
 
     public void QuitGame()
@@ -82,4 +91,37 @@ public class GameManager : MonoBehaviour
     {
         yield return db.initFirebase(path);
     }
+
+    IEnumerator getAll2DPieces()
+    {
+        yield return db.downloadAndSave2DPieces("BlackQueen", this);
+        yield return db.downloadAndSave2DPieces("BlackKnight", this);
+        yield return db.downloadAndSave2DPieces("BlackBishop", this);
+        yield return db.downloadAndSave2DPieces("BlackKing", this);
+        yield return db.downloadAndSave2DPieces("BlackRook", this);
+        yield return db.downloadAndSave2DPieces("BlackPawn", this);
+        yield return db.downloadAndSave2DPieces("WhiteQueen", this);
+        yield return db.downloadAndSave2DPieces("WhiteKnight", this);
+        yield return db.downloadAndSave2DPieces("WhiteBishop", this);
+        yield return db.downloadAndSave2DPieces("WhiteKing", this);
+        yield return db.downloadAndSave2DPieces("WhiteRook", this);
+        yield return db.downloadAndSave2DPieces("WhitePawn", this);
+    }
+
+    IEnumerator getAll3DPieces()
+    {
+        yield return db.downloadAndSave3DPieces("BlackQueen", this);
+        yield return db.downloadAndSave3DPieces("BlackKnight", this);
+        yield return db.downloadAndSave3DPieces("BlackBishop", this);
+        yield return db.downloadAndSave3DPieces("BlackKing", this);
+        yield return db.downloadAndSave3DPieces("BlackRook", this);
+        yield return db.downloadAndSave3DPieces("BlackPawn", this);
+        yield return db.downloadAndSave3DPieces("WhiteQueen", this);
+        yield return db.downloadAndSave3DPieces("WhiteKnight", this);
+        yield return db.downloadAndSave3DPieces("WhiteBishop", this);
+        yield return db.downloadAndSave3DPieces("WhiteKing", this);
+        yield return db.downloadAndSave3DPieces("WhiteRook", this);
+        yield return db.downloadAndSave3DPieces("WhitePawn", this);
+    }
+
 }
