@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "243999155795",
+    "firebase_url": "https://jeremyattardunity.firebaseio.com",
+    "project_id": "jeremyattardunity",
+    "storage_bucket": "jeremyattardunity.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:243999155795:android:2dc69fdd42ea6ea10208a6",
+        "android_client_info": {
+          "package_name": "com.mcast.jeremyunity"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "243999155795-i9rjdk6e4vdndpc599ildambv97ea5vd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBSAJWWQB7mR_N3nB8AW0dTuis6BbhyTuo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "243999155795-i9rjdk6e4vdndpc599ildambv97ea5vd.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
