@@ -11,7 +11,7 @@ public class Game : MonoBehaviour
     private GameObject[] playerBlack = new GameObject[16];
     private GameObject[] playerWhite = new GameObject[16];
 
-    private string currentPlayer = "White";
+    public static string currentPlayer;
     public bool gameOver = false;
 
     //Timer

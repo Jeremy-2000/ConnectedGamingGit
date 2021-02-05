@@ -11,6 +11,13 @@ public class GameManager : MonoBehaviour
     public Button Set2D, Set3D;
     public FirebaseScript db;
 
+    //Loading Bar
+    public Slider ProgressBar;
+    public static float ProgressBarTimer = 0f;
+
+
+    private GameObject GameLoad;
+
     string path = "https://jeremyattardunity.firebaseio.com/";
 
     void Start()
@@ -43,6 +50,40 @@ public class GameManager : MonoBehaviour
             }
             catch (Exception e)
             {
+
+            }
+        }
+
+        
+        //GameLoad.SetActive(false);
+        if (scene.name == "Game")
+        {
+            GameLoad = GameObject.Find("Game");
+            ProgressBar = FindObjectOfType<Slider>();
+
+            ProgressBarTimer -= Time.deltaTime;
+
+            if (ProgressBarTimer < 5f)
+            {
+                try
+                {
+                    if (ProgressBar.value < 1)
+                    {
+                        ProgressBar.value += 0.2f * Time.deltaTime;
+                        ProgressBar.GetComponent<Slider>().interactable = false;
+                        GameLoad.SetActive(true);
+                    }
+                    if (ProgressBar.value == ProgressBar.maxValue || ProgressBar.value > ProgressBar.maxValue)
+                    {
+                        ProgressBar.gameObject.SetActive(false);
+                        GameLoad.SetActive(false);
+                        Game.currentPlayer = "White";
+                    }
+                }
+                catch (Exception e)
+                {
+
+                }
 
             }
         }
