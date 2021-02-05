@@ -181,4 +181,23 @@ public class Game : MonoBehaviour
         yield return new WaitForSeconds(5f);
         SceneManager.LoadScene("MainMenu");
     }
+
+    public void Player1Surrender()
+    {
+        WinnerHolder.SetActive(true);
+        gameOver = true;
+        Player1THolder.SetActive(true);
+        Player2THolder.SetActive(true);
+        GameObject.FindGameObjectWithTag("WinnerText").GetComponent<Text>().text = "White is the winner";
+    }
+
+    public void Player2Surrender()
+    {
+        WinnerHolder.SetActive(true);
+        gameOver = true;
+        Player1THolder.SetActive(true);
+        Player2THolder.SetActive(true);
+        GameObject.FindGameObjectWithTag("WinnerText").GetComponent<Text>().text = "Black is the winner";
+    }
+
 }

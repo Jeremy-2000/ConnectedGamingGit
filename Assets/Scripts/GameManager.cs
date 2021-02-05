@@ -13,22 +13,10 @@ public class GameManager : MonoBehaviour
 
     string path = "https://jeremyattardunity.firebaseio.com/";
 
-    void Awake()
-    {
-        GameObject[] objs = GameObject.FindGameObjectsWithTag("MainCamera");
-
-        if (objs.Length > 1)
-        {
-            Destroy(this.gameObject);
-        }
-
-        DontDestroyOnLoad(this.gameObject);
-    }
-
     void Start()
     {
-        DontDestroyOnLoad(this);
-
+        username.text = "";
+        DontDestroyOnLoad(this.gameObject);
         Camera.main.gameObject.AddComponent<FirebaseScript>();
         db = Camera.main.GetComponent<FirebaseScript>();
     }
@@ -78,12 +66,6 @@ public class GameManager : MonoBehaviour
 
     public void QuitGame()
     {
-        Application.Quit();
-    }
-
-    IEnumerator clearDB()
-    {
-        yield return db.clearFirebase();
         Application.Quit();
     }
 
