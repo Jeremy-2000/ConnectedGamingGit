@@ -142,11 +142,11 @@ public class FirebaseScript : MonoBehaviour
 
         Sprite chessPieceSprite = LoadSprite(filename);
 
-        //foreach (GameObject g in GameObject.FindGameObjectsWithTag(name))
-        //{
-        //    print(g.tag);
-        //    g.GetComponent<SpriteRenderer>().sprite = chessPieceSprite;
-        //}
+        foreach (GameObject g in GameObject.FindGameObjectsWithTag(name))
+        {
+            print(g.tag);
+            g.GetComponent<SpriteRenderer>().sprite = chessPieceSprite;
+        }
 
 
         yield return null;
@@ -181,11 +181,11 @@ public class FirebaseScript : MonoBehaviour
 
         Sprite chessPieceSprite = LoadSprite(filename);
 
-        //foreach (GameObject g in GameObject.FindGameObjectsWithTag(name))
-        //{
-        //    print(name);
-        //    g.GetComponent<SpriteRenderer>().sprite = chessPieceSprite;
-        //}
+        foreach (GameObject g in GameObject.FindGameObjectsWithTag(name))
+        {
+            print(name);
+            g.GetComponent<SpriteRenderer>().sprite = chessPieceSprite;
+        }
 
         yield return null;
     }
